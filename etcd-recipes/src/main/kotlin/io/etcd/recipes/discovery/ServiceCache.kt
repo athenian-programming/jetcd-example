@@ -36,7 +36,7 @@ import io.etcd.recipes.common.ensureSuffix
 import io.etcd.recipes.common.getChildren
 import io.etcd.recipes.common.watchOption
 import io.etcd.recipes.common.watcher
-import mu.two.KLogging
+import io.github.oshai.kotlinlogging.KotlinLogging
 import java.util.Collections.synchronizedList
 import java.util.concurrent.ConcurrentMap
 
@@ -170,5 +170,7 @@ class ServiceCache internal constructor(
     super.close()
   }
 
-  companion object : KLogging()
+  companion object {
+    private val logger = KotlinLogging.logger {}
+  }
 }

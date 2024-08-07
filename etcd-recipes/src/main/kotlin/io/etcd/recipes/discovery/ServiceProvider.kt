@@ -31,9 +31,7 @@ class ServiceProvider internal constructor(
 
   fun getInstance(): ServiceInstance = getAllInstances()[Random.nextInt(0, getAllInstances().size)]
 
-  fun getAllInstances(): List<ServiceInstance> {
-    return serviceDiscovery.value.queryForInstances(serviceName)
-  }
+  fun getAllInstances(): List<ServiceInstance> = serviceDiscovery.value.queryForInstances(serviceName)
 
   override fun close() {
     if (serviceDiscovery.isInitialized())

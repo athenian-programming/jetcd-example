@@ -96,8 +96,8 @@ fun Client.putValuesWithKeepAlive(
   block: () -> Unit,
 ) {
   val lease = leaseGrant(ttl)
-  for (kv in kvs)
+  for (kv in kvs) {
     putValue(kv.first, kv.second, putOption { withLeaseId(lease.id) })
-
+  }
   keepAliveWith(lease) { block() }
 }

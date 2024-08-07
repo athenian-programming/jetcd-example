@@ -47,7 +47,7 @@ import io.etcd.recipes.common.setTo
 import io.etcd.recipes.common.transaction
 import io.etcd.recipes.common.watchOption
 import io.etcd.recipes.common.withWatcher
-import mu.two.KLogging
+import io.github.oshai.kotlinlogging.KotlinLogging
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.Executor
 import java.util.concurrent.ExecutorService
@@ -180,11 +180,12 @@ constructor(
               leaderPath,
               watchOption,
               { watchResponse ->
-                for (event in watchResponse.events)
+                for (event in watchResponse.events) {
                   if (event.eventType == DELETE) {
                     // Run for leader whenever leader key is deleted
                     attemptToBecomeLeader(client)
                   }
+                }
               },
             ) {
               watchStarted.set(true)
@@ -354,7 +355,9 @@ constructor(
     }
   }
 
-  companion object : KLogging() {
+  companion object {
+    private val logger = KotlinLogging.logger {}
+
     private val String.withParticipationSuffix get() = appendToPath("participants")
     private val String.withLeaderSuffix get() = appendToPath("LEADER")
 
@@ -392,7 +395,7 @@ constructor(
           client.withWatcher(
             electionPath.withLeaderSuffix,
             block = { watchResponse ->
-              for (event in watchResponse.events)
+              for (event in watchResponse.events) {
                 try {
                   when (event.eventType) {
                     PUT -> listener.takeLeadership(event.keyValue.value.asString.stripUniqueSuffix)
@@ -403,6 +406,7 @@ constructor(
                 } catch (e: Throwable) {
                   logger.error(e) { "Exception in reportLeader()" }
                 }
+              }
             },
           ) {
             terminateListener.await()

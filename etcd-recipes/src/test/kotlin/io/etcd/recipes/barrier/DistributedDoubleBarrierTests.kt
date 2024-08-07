@@ -25,7 +25,7 @@ import io.etcd.recipes.common.connectToEtcd
 import io.etcd.recipes.common.deleteChildren
 import io.etcd.recipes.common.nonblockingThreads
 import io.etcd.recipes.common.urls
-import mu.two.KLogging
+import io.github.oshai.kotlinlogging.KotlinLogging
 import org.amshove.kluent.invoking
 import org.amshove.kluent.shouldBeEqualTo
 import org.amshove.kluent.shouldThrow
@@ -152,5 +152,7 @@ class DistributedDoubleBarrierTests {
     logger.debug { "Done" }
   }
 
-  companion object : KLogging()
+  companion object {
+    private val logger = KotlinLogging.logger {}
+  }
 }

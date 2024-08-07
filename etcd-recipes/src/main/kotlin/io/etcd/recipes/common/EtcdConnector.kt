@@ -24,7 +24,9 @@ import io.etcd.jetcd.Client
 import java.io.Closeable
 import java.util.Collections.synchronizedList
 
-open class EtcdConnector(val client: Client) : Closeable {
+open class EtcdConnector(
+  val client: Client,
+) : Closeable {
   protected var startCalled by atomicBoolean(false)
   protected val startThreadComplete = BooleanMonitor(false)
   protected var closeCalled: Boolean by atomicBoolean(false)

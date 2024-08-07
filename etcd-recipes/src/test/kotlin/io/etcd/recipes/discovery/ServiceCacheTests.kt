@@ -26,7 +26,7 @@ import io.etcd.recipes.common.checkForException
 import io.etcd.recipes.common.connectToEtcd
 import io.etcd.recipes.common.nonblockingThreads
 import io.etcd.recipes.common.urls
-import mu.two.KLogging
+import io.github.oshai.kotlinlogging.KotlinLogging
 import org.amshove.kluent.shouldBeEqualTo
 import org.junit.jupiter.api.Test
 import java.util.concurrent.atomic.AtomicInteger
@@ -123,5 +123,7 @@ class ServiceCacheTests {
     totalCounter.get() shouldBeEqualTo (threadCount * serviceCount) * 3
   }
 
-  companion object : KLogging()
+  companion object {
+    private val logger = KotlinLogging.logger {}
+  }
 }

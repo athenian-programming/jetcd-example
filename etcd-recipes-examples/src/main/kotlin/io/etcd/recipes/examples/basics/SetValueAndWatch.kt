@@ -55,8 +55,9 @@ fun main() {
       client.withWatcher(
         path,
         block = { watchResponse: WatchResponse ->
-          for (event in watchResponse.events)
+          for (event in watchResponse.events) {
             println("Watch event: ${event.eventType} ${event.keyValue.asString}")
+          }
         },
       ) {
         println("Started watch")

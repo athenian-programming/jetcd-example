@@ -23,7 +23,7 @@ import com.github.pambrose.common.util.sleep
 import io.etcd.recipes.common.blockingThreads
 import io.etcd.recipes.common.connectToEtcd
 import io.etcd.recipes.common.urls
-import mu.two.KLogging
+import io.github.oshai.kotlinlogging.KotlinLogging
 import org.amshove.kluent.shouldBeEqualTo
 import org.junit.jupiter.api.Test
 import java.util.concurrent.Executors
@@ -87,5 +87,7 @@ class ReportLeaderTests {
     executor.shutdown()
   }
 
-  companion object : KLogging()
+  companion object {
+    private val logger = KotlinLogging.logger {}
+  }
 }

@@ -33,7 +33,7 @@ import io.etcd.recipes.common.getResponse
 import io.etcd.recipes.common.getValue
 import io.etcd.recipes.common.setTo
 import io.etcd.recipes.common.transaction
-import mu.two.KLogging
+import io.github.oshai.kotlinlogging.KotlinLogging
 import kotlin.time.Duration.Companion.milliseconds
 
 @JvmOverloads
@@ -94,10 +94,11 @@ constructor(
   private fun createCounterIfNotPresent(): Boolean =
     // Run the transaction if the counter is not present
     if (client.getResponse(counterPath).kvs.isEmpty()) {
-      client.transaction {
-        If(counterPath.doesNotExist)
-        Then(counterPath setTo default)
-      }.isSucceeded
+      client
+        .transaction {
+          If(counterPath.doesNotExist)
+          Then(counterPath setTo default)
+        }.isSucceeded
     } else {
       false
     }
@@ -111,7 +112,8 @@ constructor(
       Then(counterPath setTo kv.value.asLong + amount)
     }
 
-  companion object : KLogging() {
+  companion object {
+    private val logger = KotlinLogging.logger {}
     // val collisionCount = AtomicLong()
     // val totalCount = AtomicLong()
 

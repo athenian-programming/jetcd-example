@@ -18,4 +18,6 @@
 
 package io.etcd.recipes.common
 
-class EtcdRecipeException(msg: String) : Exception(msg)
+class EtcdRecipeException(
+  msg: String,
+) : Exception(msg)

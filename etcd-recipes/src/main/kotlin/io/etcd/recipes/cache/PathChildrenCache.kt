@@ -42,7 +42,7 @@ import io.etcd.recipes.common.ensureSuffix
 import io.etcd.recipes.common.getChildren
 import io.etcd.recipes.common.watchOption
 import io.etcd.recipes.common.watcher
-import mu.two.KLogging
+import io.github.oshai.kotlinlogging.KotlinLogging
 import java.util.concurrent.ConcurrentMap
 import java.util.concurrent.Executor
 import java.util.concurrent.ExecutorService
@@ -269,5 +269,7 @@ class PathChildrenCache(
     super.close()
   }
 
-  companion object : KLogging()
+  companion object {
+    private val logger = KotlinLogging.logger {}
+  }
 }

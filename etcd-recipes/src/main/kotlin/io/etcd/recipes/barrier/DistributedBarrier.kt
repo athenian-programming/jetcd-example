@@ -39,7 +39,7 @@ import io.etcd.recipes.common.setTo
 import io.etcd.recipes.common.transaction
 import io.etcd.recipes.common.watchOption
 import io.etcd.recipes.common.withWatcher
-import mu.two.KLogging
+import io.github.oshai.kotlinlogging.KotlinLogging
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 import kotlin.time.Duration
@@ -147,9 +147,11 @@ constructor(
         barrierPath,
         watchOption,
         { watchResponse ->
-          for (event in watchResponse.events)
-            if (event.eventType == DELETE)
+          for (event in watchResponse.events) {
+            if (event.eventType == DELETE) {
               waitLatch.countDown()
+            }
+          }
         },
       ) {
         // Check one more time in case watch missed the delete just after last check
@@ -172,7 +174,9 @@ constructor(
     super.close()
   }
 
-  companion object : KLogging() {
+  companion object {
+    private val logger = KotlinLogging.logger {}
+
     internal fun defaultClientId() = "${DistributedBarrier::class.simpleName}:${randomId(TOKEN_LENGTH)}"
   }
 }

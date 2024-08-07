@@ -42,7 +42,7 @@ import io.etcd.recipes.common.leaseGrant
 import io.etcd.recipes.common.putOption
 import io.etcd.recipes.common.setTo
 import io.etcd.recipes.common.transaction
-import mu.two.KLogging
+import io.github.oshai.kotlinlogging.KotlinLogging
 import java.io.Closeable
 import java.util.Collections.synchronizedList
 import java.util.concurrent.ConcurrentMap
@@ -203,7 +203,9 @@ constructor(
 
   private fun getNamesPath(vararg elems: String) = namesPath.appendToPath(elems.joinToString("/"))
 
-  companion object : KLogging() {
+  companion object {
+    private val logger = KotlinLogging.logger {}
+
     internal fun defaultClientId() = "${ServiceDiscovery::class.simpleName}:${randomId(TOKEN_LENGTH)}"
   }
 }

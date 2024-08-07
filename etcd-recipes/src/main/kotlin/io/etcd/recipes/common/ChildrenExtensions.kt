@@ -88,8 +88,9 @@ fun Client.getChildrenValues(
 // Delete children keys
 fun Client.deleteChildren(keyName: String): List<String> {
   val keys = getChildrenKeys(keyName)
-  for (key in keys)
+  for (key in keys) {
     deleteKey(key)
+  }
   return keys
 }
 

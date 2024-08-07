@@ -25,7 +25,7 @@ import io.etcd.recipes.common.connectToEtcd
 import io.etcd.recipes.common.deleteChildren
 import io.etcd.recipes.common.getChildCount
 import io.etcd.recipes.common.urls
-import mu.two.KLogging
+import io.github.oshai.kotlinlogging.KotlinLogging
 import org.amshove.kluent.shouldBeEqualTo
 import org.junit.jupiter.api.Test
 import java.util.Collections.synchronizedList
@@ -292,5 +292,7 @@ class DistributedPriorityQueueTest {
     dequeuedData shouldBeEqualTo testData.reversed()
   }
 
-  companion object : KLogging()
+  companion object {
+    private val logger = KotlinLogging.logger {}
+  }
 }

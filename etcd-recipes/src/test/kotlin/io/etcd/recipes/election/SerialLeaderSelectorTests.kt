@@ -22,7 +22,7 @@ import com.github.pambrose.common.util.random
 import com.github.pambrose.common.util.sleep
 import io.etcd.recipes.common.connectToEtcd
 import io.etcd.recipes.common.urls
-import mu.two.KLogging
+import io.github.oshai.kotlinlogging.KotlinLogging
 import org.amshove.kluent.invoking
 import org.amshove.kluent.shouldBeEqualTo
 import org.amshove.kluent.shouldThrow
@@ -91,5 +91,7 @@ class SerialLeaderSelectorTests {
     relinquishLeadershiptCounter.get() shouldBeEqualTo count
   }
 
-  companion object : KLogging()
+  companion object {
+    private val logger = KotlinLogging.logger {}
+  }
 }

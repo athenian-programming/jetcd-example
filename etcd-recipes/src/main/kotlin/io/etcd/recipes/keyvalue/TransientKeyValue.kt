@@ -25,7 +25,7 @@ import io.etcd.recipes.barrier.DistributedDoubleBarrier.Companion.defaultClientI
 import io.etcd.recipes.common.EtcdConnector
 import io.etcd.recipes.common.EtcdRecipeRuntimeException
 import io.etcd.recipes.common.putValueWithKeepAlive
-import mu.two.KLogging
+import io.github.oshai.kotlinlogging.KotlinLogging
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.Executor
 import java.util.concurrent.ExecutorService
@@ -119,7 +119,9 @@ constructor(
     super.close()
   }
 
-  companion object : KLogging() {
+  companion object {
+    private val logger = KotlinLogging.logger {}
+
     internal fun defaultClientId() = "${TransientKeyValue::class.simpleName}:${randomId(TOKEN_LENGTH)}"
   }
 }

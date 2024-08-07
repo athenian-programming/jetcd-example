@@ -26,7 +26,7 @@ import io.etcd.recipes.common.connectToEtcd
 import io.etcd.recipes.common.threadWithExceptionCheck
 import io.etcd.recipes.common.throwExceptionFromList
 import io.etcd.recipes.common.urls
-import mu.two.KLogging
+import io.github.oshai.kotlinlogging.KotlinLogging
 import org.amshove.kluent.invoking
 import org.amshove.kluent.shouldBeEqualTo
 import org.amshove.kluent.shouldThrow
@@ -202,5 +202,7 @@ class DistributedAtomicLongTests {
     }
   }
 
-  companion object : KLogging()
+  companion object {
+    private val logger = KotlinLogging.logger {}
+  }
 }

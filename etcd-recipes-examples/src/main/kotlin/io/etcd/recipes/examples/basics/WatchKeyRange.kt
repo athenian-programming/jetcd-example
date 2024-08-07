@@ -41,8 +41,9 @@ fun main() {
         path,
         watchOption,
         { watchResponse ->
-          for (event in watchResponse.events)
+          for (event in watchResponse.events) {
             println("${event.eventType} for ${event.keyValue.asString}")
+          }
         },
       ) {
         // Create empty root

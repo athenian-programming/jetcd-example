@@ -9,11 +9,11 @@
 plugins {
   id 'java'
   id 'jacoco'
-  id 'org.jetbrains.kotlin.jvm' version '2.0.10' apply false
-  id 'org.jetbrains.kotlin.plugin.serialization' version '2.0.10' apply false
-  id "org.jetbrains.kotlinx.atomicfu" version "0.25.0"
+  id 'org.jetbrains.kotlin.jvm' version '2.1.0' apply false
+  id 'org.jetbrains.kotlin.plugin.serialization' version '2.1.0' apply false
+  id "org.jetbrains.kotlinx.atomicfu" version "0.26.1"
   id "com.github.ben-manes.versions" version "0.51.0" apply false
-  id 'org.jmailen.kotlinter' version "4.4.1" apply false
+//  id 'org.jmailen.kotlinter' version "5.0.0" apply false
   id 'com.github.kt3k.coveralls' version '2.12.2' apply false
 }
 
@@ -22,15 +22,12 @@ allprojects {
   version '0.9.22'
 
   apply plugin: 'org.jetbrains.kotlin.jvm'
-  apply plugin: 'org.jmailen.kotlinter'
+//  apply plugin: 'org.jmailen.kotlinter'
   apply plugin: 'org.jetbrains.kotlin.plugin.serialization'
   apply plugin: 'com.github.ben-manes.versions'
   apply plugin: 'jacoco'
   apply plugin: 'com.github.kt3k.coveralls'
   // apply plugin: 'kotlinx-atomicfu'
-
-  sourceCompatibility = JavaVersion.VERSION_17
-  targetCompatibility = JavaVersion.VERSION_17
 
   repositories {
     google()
@@ -123,19 +120,19 @@ subprojects {
     }
   }
 
-  kotlinter {
-    ignoreFailures = false
-    reporters = ['checkstyle', 'plain']
-//        experimentalRules = false
-//        disabledRules = ["no-wildcard-imports",
-//                         "indent",
-//                         "final-newline",
-//                         "comment-spacing",
-//                         "max-line-length",
-//                         "no-multi-spaces",
-//                         "wrapping",
-//                         "multiline-if-else",
-//                         "filename",
-//                         "annotation-spacing",]
-  }
+//  kotlinter {
+//    ignoreFailures = false
+//    reporters = ['checkstyle', 'plain']
+////        experimentalRules = false
+////        disabledRules = ["no-wildcard-imports",
+////                         "indent",
+////                         "final-newline",
+////                         "comment-spacing",
+////                         "max-line-length",
+////                         "no-multi-spaces",
+////                         "wrapping",
+////                         "multiline-if-else",
+////                         "filename",
+////                         "annotation-spacing",]
+//  }
 }

@@ -6,10 +6,8 @@ clean:
 stop:
 	./gradlew --stop
 
-compile:
+build: clean
 	./gradlew build -xtest
-
-build: compile
 
 tests:
 	./gradlew check jacocoTestReport
@@ -25,4 +23,4 @@ versioncheck:
 	./gradlew dependencyUpdates
 
 upgrade-wrapper:
-	./gradlew wrapper --gradle-version=8.9 --distribution-type=bin
+	./gradlew wrapper --gradle-version=8.11.1 --distribution-type=bin

@@ -1,5 +1,5 @@
 /*
- * Copyright © 2021 Paul Ambrose (pambrose@mac.com)
+ * Copyright © 2024 Paul Ambrose (pambrose@mac.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -87,5 +87,5 @@ data class ServiceInstance(
 fun serviceInstance(
   name: String,
   jsonPayload: String,
-  initReciever: ServiceInstanceBuilder.() -> ServiceInstanceBuilder = { this },
-): ServiceInstance = ServiceInstance.newBuilder(name, jsonPayload).initReciever().build()
+  initReceiver: ServiceInstanceBuilder.() -> ServiceInstanceBuilder = { this },
+): ServiceInstance = ServiceInstance.newBuilder(name, jsonPayload).initReceiver().build()

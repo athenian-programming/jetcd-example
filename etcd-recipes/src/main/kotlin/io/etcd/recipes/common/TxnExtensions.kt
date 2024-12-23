@@ -1,5 +1,5 @@
 /*
- * Copyright © 2021 Paul Ambrose (pambrose@mac.com)
+ * Copyright © 2024 Paul Ambrose (pambrose@mac.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,9 +29,9 @@ import io.etcd.jetcd.op.Op
 import io.etcd.jetcd.options.DeleteOption
 import io.etcd.jetcd.options.PutOption
 
-fun Client.transaction(reciever: Txn.() -> Txn): TxnResponse =
+fun Client.transaction(receiver: Txn.() -> Txn): TxnResponse =
   kvClient.txn().run {
-    reciever()
+    receiver()
     commit()
   }.get()
 

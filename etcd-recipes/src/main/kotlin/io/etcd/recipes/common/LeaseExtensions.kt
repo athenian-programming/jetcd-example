@@ -1,5 +1,5 @@
 /*
- * Copyright © 2021 Paul Ambrose (pambrose@mac.com)
+ * Copyright © 2024 Paul Ambrose (pambrose@mac.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,10 +34,7 @@ fun <T> Client.keepAliveWith(
 fun Client.keepAlive(lease: LeaseGrantResponse): CloseableClient =
   leaseClient.keepAlive(
     lease.id,
-    Observers.observer(
-      { /*println("KeepAlive next resp: $next")*/ },
-      { /*println("KeepAlive err resp: $err")*/ },
-    ),
+    Observers.observer { next -> println("KeepAlive next resp: $next") },
   )
 
 fun Client.leaseGrant(ttl: Duration): LeaseGrantResponse =
